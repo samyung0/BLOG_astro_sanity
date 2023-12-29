@@ -13,7 +13,7 @@ type Props = {
 const { tag, relatedPosts }: Props = Astro.props;
 ---
 <article>
-  <div class="md:pt-[6vw] xl:max-w-[1200px] xl:mx-auto lg:mx-[5vw] md:mx-[6vw] pt-12 md:p-0">
+  
     <ul class="grid xl:grid-cols-3 xl:gap-x-24 lg:gap-y-[6vw] lg:gap-x-24 sm:grid-cols-2 gap-12 grid-cols-1">
       {posts &&
         posts
@@ -43,71 +43,20 @@ const { tag, relatedPosts }: Props = Astro.props;
                 <h3>
                   <a
                   
-                    class="pt-2 block font-bold tracking-wider md:text-xl text-lg text-primary-gray"
+                    class="pt-2 block font-bold tracking-wide md:text-xl text-lg text-primary-gray"
                     href={`/post/${post.slug}`}
                   >
                     {post.name}
                   </a>
                 </h3>
                 <div class="pt-1 flex items-center space-x-2">
-                  <span>
-                    <Image class="md:h-5 md:w-5 h-3 w-3" src={TimeSVG} alt="" />
-                  </span>
-                  <span class="text-primary-gray tracking-wide md:text-sm text-xs md:font-bold">
+                  <span class="text-primary-gray md:text-sm text-xs md:font-bold">
                     {post.readTime && Number(post.readTime) > 0 ? post.readTime : "1"} min read
                   </span>
                 </div>
-                {tags.length > 0 && (
-                  <div class="pt-1 flex items-center space-x-2">
-                    <span>
-                      {tags.length > 1 ? (
-                        <Image
-                          class="md:h-5 md:w-5 h-3 w-3 md:mt-0 mt-[2px]"
-                          src={LabelsSVG}
-                          alt=""
-                        />
-                      ) : (
-                        <Image
-                          class="md:h-5 md:w-5 h-3 w-3 md:mt-0 mt-[2px]"
-                          src={LabelSVG}
-                          alt=""
-                        />
-                      )}
-                    </span>
-                    <span>
-                      {(() => {
-                        let tagsDisplay: any = post.tags.map((slug) => {
-                          const tag = tags.find((tag) => tag.slug === slug);
-                          return (
-                            tag && (
-                              <a
-                              
-                                class="text-primary-gray tracking-wide md:text-sm text-xs md:font-bold"
-                                href={`/tag/${slug}`}
-                              >
-                                {tag.name}
-                              </a>
-                            )
-                          );
-                        });
-                        if (tagsDisplay.length > 3) {
-                          tagsDisplay = tagsDisplay.slice(0, 3);
-                          tagsDisplay.push("...");
-                        }
-                        const ret = [];
-                        if(tagsDisplay[0]) ret.push(tagsDisplay[0]);
-                        for (let i = 1; i < tagsDisplay.length; i++) {
-                          ret.push(", ");
-                          ret.push(tagsDisplay[i]);
-                        }
-                        return ret;
-                      })()}
-                    </span>
-                  </div>
-                )}
+                
               </div>
             </li>
           ))}
     </ul>
-  </div>
 </article>
