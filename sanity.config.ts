@@ -5,7 +5,8 @@ import {schema} from './sanity/schemas'
 import {codeInput} from '@sanity/code-input'
 import {table} from '@sanity/table'
 import {media} from 'sanity-plugin-media'
-import {muxInput} from 'sanity-plugin-mux-input'
+
+import {SetAndPublishAction} from "./sanity/util/readingTime";
 
 export default defineConfig({
   name: 'default',
@@ -21,6 +22,10 @@ export default defineConfig({
     table(),
     media(),
   ],
+  document: {
+    actions: (prev, context) =>{
+      return prev.map((originalAction) => (originalAction.action === 'publish' ? SetAndPublishAction : originalAction)) as any}
+  },
 
   schema,
 })
