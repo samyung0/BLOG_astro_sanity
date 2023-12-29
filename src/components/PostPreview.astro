@@ -25,7 +25,7 @@ const { tag, relatedPosts }: Props = Astro.props;
                 {post.thumbnail.asset.url && (
                   <a class="inline-block" href={`/post/${post.slug}`}>
                     <Image
-                      class="h-[230px] w-full object-contain object-bottom"
+                      class="h-[200px] w-full object-contain object-bottom"
                       src={sanityImage(post.thumbnail.asset.url)}
                       alt={post.thumbnail.alt || ""}
                       width={post.thumbnail.asset.metadata.dimensions.width}
