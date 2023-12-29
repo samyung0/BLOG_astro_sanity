@@ -1,0 +1,1 @@
+export const SANITY_PROD_URL="https://ywfq98mg.api.sanity.io/v2022-03-07/data/query/production?query="

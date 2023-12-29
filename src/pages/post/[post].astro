@@ -1,0 +1,63 @@
+---
+import type {GetStaticPaths} from 'astro'
+import Layout from '../../layouts/Layout.astro'
+import Prose from '../../components/Prose.astro'
+import RelatedPosts from '../../components/RelatedPosts.astro'
+import Tags from '../../components/Tags.astro'
+import {posts} from '../../../util/sanity'
+import ReactPortableText from '../../components/ReactPortableText'
+export const getStaticPaths = (async () => {
+  return posts.map((post) => {
+    return {
+      params: {
+        post: post.slug,
+      },
+    }
+  })
+}) satisfies GetStaticPaths
+type Props = {
+  params: {post: string}
+}
+
+const post = posts.find((post) => post.slug === Astro.params.post)!
+---
+
+<Layout title={post.name} description={''}>
+  <h1
+    class="font-mosk text-primary-gray font-bold 2xl:text-[4em] lg:text-[3em] text-[2em] pb-4 tracking-wider"
+  >
+    {post.name}
+  </h1>
+  <div
+    class="md:pt-[6vw] xl:max-w-[1200px] xl:mx-auto lg:mx-[5vw] md:mx-[6vw] pt-12 md:p-0 md:tracking-wide md:leading-8 leading-6"
+  >
+    <Prose>
+      <ReactPortableText post={post} />
+    </Prose>
+  </div>
+  <Tags />
+  <RelatedPosts post={post.relatedPosts} />
+</Layout>
+
+<script>
+  if (window.innerWidth < 640) {
+    const wrappers = document.getElementsByClassName('wrapper')
+    const toggle = (el: HTMLElement) => {
+      el.classList.toggle('oversizedCollapse')
+      el.firstElementChild?.classList.toggle('hiddenPre')
+    }
+    for (let i = 0; i < wrappers.length; i++) {
+      if ((wrappers[i] as HTMLElement).offsetHeight > 200) {
+        wrappers[i].classList.add('oversizedWrapper')
+        wrappers[i].firstElementChild?.classList.toggle('hiddenPre')
+        wrappers[i].addEventListener(
+          'click',
+          function () {
+            toggle(this)
+          },
+          {passive: true},
+        )
+      }
+    }
+  }
+</script>
