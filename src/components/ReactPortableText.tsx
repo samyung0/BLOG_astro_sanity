@@ -66,9 +66,20 @@ export default ({post}: {post: Post}) => (
             <div className="wrapper" dangerouslySetInnerHTML={{__html: html}}></div>
           )
         },
-        embed: (props: any) => {
+        embed: (props) => {
           const url = props.value.url
           return <ReactPlayer url={url} />
+        },
+        sizeChart: (props) => {
+          return (
+            <table>
+              {props.value.rows.map((row: any, index: number) => (
+                <tr>
+                  {row.cells.map((cell: any) => (index === 0 ? <th>{cell}</th> : <td>{cell}</td>))}
+                </tr>
+              ))}
+            </table>
+          )
         },
       },
       marks: {
