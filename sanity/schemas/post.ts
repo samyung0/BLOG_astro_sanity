@@ -145,6 +145,12 @@ const post: SchemaTypeDefinition = {
       title: "Reading Time",
       type: "number",
     },
+    {
+      name: "description",
+      title: "Description",
+      type: "text",
+      validation: (Rule) => Rule.required(),
+    }
   ],
 };
 

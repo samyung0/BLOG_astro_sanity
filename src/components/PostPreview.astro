@@ -43,14 +43,14 @@ const { tag, relatedPosts }: Props = Astro.props;
                 <h3>
                   <a
                   
-                    class="pt-2 block font-bold tracking-wide md:text-xl text-lg text-primary-gray"
+                    class="pt-2 block font-bold tracking-wide md:text-lg text-base text-primary-gray"
                     href={`/post/${post.slug}`}
                   >
                     {post.name}
                   </a>
                 </h3>
                 <div class="pt-1 flex items-center space-x-2">
-                  <span class="text-primary-gray md:text-sm text-xs md:font-bold">
+                  <span class="text-primary-gray md:text-sm sm:text-xs text-[10px]">
                     {post.readTime && Number(post.readTime) > 0 ? post.readTime : "1"} min read
                   </span>
                 </div>

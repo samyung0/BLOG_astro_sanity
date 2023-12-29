@@ -11,4 +11,5 @@ export default defineConfig({
     defaultStrategy: 'viewport',
     prefetchAll: true,
   },
+  trailingSlash: "always"
 })

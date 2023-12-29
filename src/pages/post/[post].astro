@@ -22,7 +22,7 @@ type Props = {
 const post = posts.find((post) => post.slug === Astro.params.post)!
 ---
 
-<Layout title={post.name} description={''}>
+<Layout title={post.name} description={post.description}>
   <h1
     class="font-mosk text-primary-gray font-bold 2xl:text-[4em] lg:text-[3em] text-[2em] pb-4 tracking-wider"
   >

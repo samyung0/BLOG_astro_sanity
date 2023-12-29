@@ -15,7 +15,8 @@ export type Post = {
     asset: SanityAsset
   };
   content: PortableTextBlock[];
-  author: string
+  author: string;
+  description: string;
 }
 
 export type Author = {
