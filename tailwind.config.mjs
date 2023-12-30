@@ -62,8 +62,9 @@ export default {
     require('@tailwindcss/typography'),
     function ({addVariant}) {
       addVariant('lines', '& code > span')
-      addVariant('markedlines', "& span[markedlines='1']")
-      addVariant('hasfilename', "& pre[filename='1']")
+      addVariant('markedlines', "& span.highlight")
+      addVariant('hasfilename', "& pre.filename")
+      addVariant('textBlock', "& pre.textBlock")
       addVariant('oversizedWrapper', '& .oversizedWrapper')
       addVariant('hiddenpre', '& .hiddenPre'),
       addVariant('inlineCode', '& .inlineCode')

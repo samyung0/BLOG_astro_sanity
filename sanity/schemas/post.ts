@@ -49,7 +49,7 @@ const post: SchemaTypeDefinition = {
                 fields: [
                   {
                     name: 'href',
-                    type: 'url',
+                    type: 'string',
                     title: 'URL',
                     validation: (Rule) => Rule.required(),
                   },

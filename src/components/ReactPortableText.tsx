@@ -1,4 +1,4 @@
-import {PortableText} from '@portabletext/react'
+import {PortableText, defaultComponents} from '@portabletext/react'
 import ReactPlayer from './ReactPlayer'
 import type {Post} from '../../types/sanity'
 
@@ -20,6 +20,14 @@ export default ({post}: {post: Post}) => (
   <PortableText
     value={post.content}
     components={{
+      block: (props) => {
+        const HeadingTag = props.value.style! as any
+
+        if (/^h\d/.test(HeadingTag)) {
+          return <HeadingTag id={props.value.children[0].text}>{props.children}</HeadingTag>
+        }
+        return (defaultComponents.block as any)[HeadingTag](props)
+      },
       types: {
         image: (props) => {
           return (
@@ -45,14 +53,14 @@ export default ({post}: {post: Post}) => (
             bg: highlighter.getBackgroundColor('github-dark'),
             elements: {
               pre({className, style, children}) {
-                return `<pre filename=${
-                  props.value.filename ? 1 : 0
-                } class="${className}" style="${style}" tabindex="0">${children}</pre>`
+                return `<pre class="${className} ${props.value.filename ? 'filename' : ''} ${
+                  props.value.language === 'text' ? 'textBlock' : ''
+                }" style="${style}" tabindex="0">${children}</pre>`
               },
               line({className, children, index}) {
-                return `<span markedlines=${
-                  (props.value.highlightedLines ?? []).includes(index + 1) ? '1' : '0'
-                } class="${className}">${children}</span>`
+                return `<span class="${className} ${
+                  (props.value.highlightedLines ?? []).includes(index + 1) ? 'highlight' : ''
+                }">${children}</span>`
               },
             },
           })
@@ -74,9 +82,9 @@ export default ({post}: {post: Post}) => (
         sizeChart: (props) => {
           return (
             <table>
-              {props.value.rows.map((row: any) => (
+              {props.value.rows.map((row: any, index: number) => (
                 <tr key={row._key}>
-                  {row.cells.map((cell: any, index: number) =>
+                  {row.cells.map((cell: any) =>
                     index === 0 ? (
                       <th key={row._key + index}>{cell}</th>
                     ) : (

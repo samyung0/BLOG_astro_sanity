@@ -105,12 +105,12 @@ const {title, noPaddingTop, description = ''} = Astro.props
       line-height: inherit;
     }
 
-    pre > code {
+    pre:not(.textBlock) > code {
       counter-reset: step;
       counter-increment: step 0;
     }
 
-    pre > code .line::before {
+    pre:not(.textBlock) > code .line::before {
       content: counter(step);
       counter-increment: step;
       width: 1rem;
