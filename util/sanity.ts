@@ -1,10 +1,10 @@
 import type {Author, Post, Tag} from '../types/sanity'
-import groq from 'groq'
+// import groq from 'groq'
 import {SANITY_PROD_URL} from '../const'
 
 export const posts = (await fetch(
   SANITY_PROD_URL +
-    groq`*[_type == "post"] | order(publishedAt desc) {
+    `*[_type == "post"] | order(publishedAt desc) {
     _id,
     _createdAt,
     _updatedAt,
@@ -37,7 +37,7 @@ export const posts = (await fetch(
 
 export const authors = (await fetch(
   SANITY_PROD_URL +
-    groq`
+    `
       *[_type == "author"] {
         _id,
         name,
@@ -53,7 +53,7 @@ export const authors = (await fetch(
 
 export const tags = (await fetch(
   SANITY_PROD_URL +
-    groq`
+    `
       *[_type == "tag"] {
         _id,
         name,

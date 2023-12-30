@@ -73,9 +73,9 @@ export default ({post}: {post: Post}) => (
         sizeChart: (props) => {
           return (
             <table>
-              {props.value.rows.map((row: any, index: number) => (
-                <tr>
-                  {row.cells.map((cell: any) => (index === 0 ? <th>{cell}</th> : <td>{cell}</td>))}
+              {props.value.rows.map((row: any) => (
+                <tr key={row._key}>
+                  {row.cells.map((cell: any, index: number) => (index === 0 ? <th key={row._key + index}>{cell}</th> : <td>{cell}</td>))}
                 </tr>
               ))}
             </table>
