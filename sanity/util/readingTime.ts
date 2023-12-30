@@ -32,10 +32,11 @@ export function SetAndPublishAction(props: any) {
       patch.execute([{}])
 
       // Set publishedAt to current date and time
-      if (!data.readingTime)
-        patch.execute([
-          {set: {readingTime: Math.max(Math.round(rec(0, data.content) / 180), 1)}},
-        ])
+      if (data._type === "post")
+        if (!data.readingTime)
+          patch.execute([
+            { set: { readingTime: Math.max(Math.round(rec(0, data.content) / 180), 1) } },
+          ]);
 
       // Perform the publish
       publish.execute()
