@@ -75,7 +75,13 @@ export default ({post}: {post: Post}) => (
             <table>
               {props.value.rows.map((row: any) => (
                 <tr key={row._key}>
-                  {row.cells.map((cell: any, index: number) => (index === 0 ? <th key={row._key + index}>{cell}</th> : <td>{cell}</td>))}
+                  {row.cells.map((cell: any, index: number) =>
+                    index === 0 ? (
+                      <th key={row._key + index}>{cell}</th>
+                    ) : (
+                      <td key={row._key + index}>{cell}</td>
+                    )
+                  )}
                 </tr>
               ))}
             </table>
