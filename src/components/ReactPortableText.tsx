@@ -25,6 +25,7 @@ export default ({post}: {post: Post}) => (
           return (
             <figure>
               <img
+                className="max-h-[400px] object-contain"
                 src={props.value.asset.url}
                 alt=""
                 width={props.value.asset.metadata.dimensions.width}
