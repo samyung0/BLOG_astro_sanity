@@ -1,7 +1,8 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import {ViewTransitions} from 'astro:transitions'
 import Nav from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
+import {SEOMetadata} from 'astro-seo-metadata'
 interface Props {
   title: string
   noPaddingTop?: boolean
@@ -18,9 +19,20 @@ const {title, noPaddingTop, description = ''} = Astro.props
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    <SEOMetadata
+      siteName={'Blog'}
+      title={title}
+      description={description}
+      favicon={'/favicon.ico'}
+      author="Yung Chin Pang Sam"
+      copyright="ISC"
+      astroSitemap={true}
+      canonicalUrl={Astro.url.toString()}
+      type={'website'}
+      astroGenerator={true}
+    />
   </head>
   <body>
     <Nav />
@@ -34,109 +46,108 @@ const {title, noPaddingTop, description = ''} = Astro.props
       )
     }
     <Footer />
-  </body>
-</html>
-<style is:global>
-  @font-face {
-    font-family: 'mosk';
-    src: url('/font/mosk/Mosk Normal.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'mosk';
-    src: url('/font/mosk/Mosk Bold 700.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-  }
-  /* @font-face {
+  </body><style is:global>
+    @font-face {
+      font-family: 'mosk';
+      src: url('/font/mosk/Mosk Normal.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'mosk';
+      src: url('/font/mosk/Mosk Bold 700.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+    /* @font-face {
   font-family: "Cascadia Code";
   src: url("/font/Cascadia Code/CascadiaCode.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 } */
-  @font-face {
-    font-family: 'Fira Code';
-    src: url('/font/Fira Code/FiraCode-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-  html {
-    line-height: 1;
-    -webkit-text-size-adjust: 100%;
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif,
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    background: #f7f7f7;
-    --foreground-rgb: #f7f7f7;
-    --background-start-rgb: #f7f7f7;
-    --background-end-rgb: #3e3e3e;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    direction: ltr;
-  }
-  body {
-    padding: 0;
-    margin: 0;
-    line-height: inherit;
-  }
+    @font-face {
+      font-family: 'Fira Code';
+      src: url('/font/Fira Code/FiraCode-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    html {
+      line-height: 1;
+      -webkit-text-size-adjust: 100%;
+      -moz-tab-size: 4;
+      -o-tab-size: 4;
+      tab-size: 4;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial,
+        sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+      background: #f7f7f7;
+      --foreground-rgb: #f7f7f7;
+      --background-start-rgb: #f7f7f7;
+      --background-end-rgb: #3e3e3e;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      direction: ltr;
+    }
+    body {
+      padding: 0;
+      margin: 0;
+      line-height: inherit;
+    }
 
-  pre > code {
-    counter-reset: step;
-    counter-increment: step 0;
-  }
+    pre > code {
+      counter-reset: step;
+      counter-increment: step 0;
+    }
 
-  pre > code .line::before {
-    content: counter(step);
-    counter-increment: step;
-    width: 1rem;
-    margin-right: 1rem;
-    display: inline-block;
-    text-align: right;
-    color: rgba(115, 138, 148, 0.4);
-  }
+    pre > code .line::before {
+      content: counter(step);
+      counter-increment: step;
+      width: 1rem;
+      margin-right: 1rem;
+      display: inline-block;
+      text-align: right;
+      color: rgba(115, 138, 148, 0.4);
+    }
 
-  @keyframes float {
-    0% {
-      transform: translatey(0px);
+    @keyframes float {
+      0% {
+        transform: translatey(0px);
+      }
+      50% {
+        transform: translatey(8px);
+      }
+      100% {
+        transform: translatey(0px);
+      }
     }
-    50% {
-      transform: translatey(8px);
-    }
-    100% {
-      transform: translatey(0px);
-    }
-  }
 
-  @keyframes floatCollapse {
-    0% {
-      transform: translatey(2px) rotateZ(180deg);
+    @keyframes floatCollapse {
+      0% {
+        transform: translatey(2px) rotateZ(180deg);
+      }
+      50% {
+        transform: translatey(8px) rotateZ(180deg);
+      }
+      100% {
+        transform: translatey(2px) rotateZ(180deg);
+      }
     }
-    50% {
-      transform: translatey(8px) rotateZ(180deg);
+    .oversizedWrapper::before {
+      animation: float 6s ease-in-out infinite;
     }
-    100% {
-      transform: translatey(2px) rotateZ(180deg);
+    .oversizedCollapse::before {
+      animation: floatCollapse 6s ease-in-out infinite;
     }
-  }
-  .oversizedWrapper::before {
-    animation: float 6s ease-in-out infinite;
-  }
-  .oversizedCollapse::before {
-    animation: floatCollapse 6s ease-in-out infinite;
-  }
-</style>
+  </style>
+</html>
