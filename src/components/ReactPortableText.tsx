@@ -33,6 +33,8 @@ export default ({post}: {post: Post}) => (
           return (
             <figure>
               <img
+                decoding="async"
+                loading="lazy"
                 className="max-h-[400px] object-contain"
                 src={props.value.asset.url}
                 alt=""
