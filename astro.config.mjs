@@ -11,4 +11,8 @@ export default defineConfig({
     defaultStrategy: 'viewport',
     prefetchAll: true,
   },
+  image: {
+    domains: ["cdn.sanity.io"],
+    remotePatterns: [{ protocol: "https" }]
+  }
 })
