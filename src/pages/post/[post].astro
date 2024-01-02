@@ -29,10 +29,10 @@ const post = posts.find((post) => post.slug === Astro.params.post)!
     {post.name}
   </h1>
   <div
-  class="md:pt-[6vw] xl:max-w-[1200px] xl:mx-auto lg:mx-[5vw] md:mx-[6vw] pt-12 md:p-0 md:tracking-wide md:leading-8 leading-6"
+  class="md:pt-[6vw] xl:max-w-[1200px] xl:mx-auto lg:mx-[5vw] md:mx-[6vw] pt-12 md:p-0 md:tracking-wide"
   >
   <Prose>
-      <p class="md:text-right md:leading-7 leading-6 tracking-wide text-primary-gray ">{new Date(post._createdAt).toDateString().slice(4)}</p>
+      <p class="md:text-right leading-7 tracking-wide text-primary-gray ">{new Date(post._createdAt).toDateString().slice(4)}</p>
       <ReactPortableText post={post} />
       <p class="text-primary-gray/[0.5] text-xs tracking-wide italic sm:pt-2">Last updated: {new Date(post._updatedAt).toDateString().slice(4)}</p>
     </Prose>
