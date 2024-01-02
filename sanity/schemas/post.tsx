@@ -47,7 +47,7 @@ const post: SchemaTypeDefinition = {
                 value: 'highlight',
                 icon: () => 'H',
                 component: (props) => (
-                  <span style={{backgroundColor: 'yellow'}}>{props.children}</span>
+                  <span style={{backgroundColor: 'tomato'}}>{props.children}</span>
                 ),
               },
               {title: 'Strong', value: 'strong'},

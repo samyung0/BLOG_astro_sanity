@@ -102,13 +102,13 @@ export default ({post}: {post: Post}) => (
       marks: {
         indent: (props) => {
           return (
-            <span style={{paddingInlineStart: Number(props.value.indentLevel) * 32 + 'px'}}>
-              {props.children}
-            </span>
+            <p style={{paddingInlineStart: props.value.indentLevel * 32 + 'px'}}>
+              <span>{props.children}</span>
+            </p>
           )
         },
         highlight: (props) => {
-          return <span style={{backgroundColor: 'yellow'}}>{props.children}</span>
+          return <span style={{backgroundColor: 'tomato'}}>{props.children}</span>
         },
         code: (props) => {
           return <code className="inlineCode">{props.children}</code>
