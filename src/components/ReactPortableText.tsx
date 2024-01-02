@@ -31,8 +31,14 @@ export default ({post}: {post: Post}) => (
       types: {
         image: (props) => {
           return (
-            <figure className='flex justify-center flex-col items-center'>
+            <figure className="flex justify-center flex-col items-center">
               <img
+                style={{
+                  backgroundImage: `url(${props.value.asset.metadata.lqip})`,
+                  backgroundSize: "50%",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center"
+                }}
                 decoding="async"
                 loading="lazy"
                 className="max-h-[400px] object-contain"
@@ -102,9 +108,25 @@ export default ({post}: {post: Post}) => (
       marks: {
         indent: (props) => {
           return (
-            <p style={{paddingInlineStart: props.value.indentLevel * 32 + 'px'}}>
-              <span>{props.children}</span>
-            </p>
+            <span
+              style={{
+                paddingInlineStart: props.value.indentLevel * 32 + 'px',
+                display: 'block',
+              }}
+            >
+              {props.children}
+            </span>
+          )
+        },
+        indent2: (props) => {
+          return (
+            <span
+              style={{
+                paddingInlineStart: props.value.indentLevel * 32 + 'px',
+              }}
+            >
+              {props.children}
+            </span>
           )
         },
         highlight: (props) => {
