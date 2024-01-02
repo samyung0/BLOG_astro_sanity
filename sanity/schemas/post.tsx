@@ -41,7 +41,53 @@ const post: SchemaTypeDefinition = {
         {
           type: 'block',
           marks: {
+            decorators: [
+              {
+                title: 'Highlight',
+                value: 'highlight',
+                icon: () => 'H',
+                component: (props) => (
+                  <span style={{backgroundColor: 'yellow'}}>{props.children}</span>
+                ),
+              },
+              {title: 'Strong', value: 'strong'},
+              {title: 'Emphasis', value: 'em'},
+              {title: 'Code', value: 'code'},
+              {title: 'Underline', value: 'underline'},
+              {title: 'Strike', value: 'strike-through'},
+            ],
             annotations: [
+              {
+                name: 'indent',
+                type: 'object',
+                title: 'Indent',
+                icon: () => 'I',
+                fields: [
+                  {
+                    title: 'Indent Level',
+                    name: 'indentLevel',
+                    type: 'string',
+                    initialValue: '1',
+                    options: {
+                      list: [
+                        {title: '1', value: '1'},
+                        {title: '2', value: '2'},
+                        {title: '3', value: '3'},
+                        {title: '4', value: '4'},
+                      ],
+                    },
+                  },
+                ],
+                components: {
+                  annotation: (props: any) => {
+                    return (
+                      <p style={{paddingInlineStart: props.value.indentLevel * 32 + 'px'}}>
+                        <span>{props.renderDefault(props)}</span>
+                      </p>
+                    )
+                  },
+                },
+              },
               {
                 name: 'link',
                 type: 'object',
