@@ -31,7 +31,7 @@ export default ({post}: {post: Post}) => (
       types: {
         image: (props) => {
           return (
-            <figure className='flex justify-center flex-col'>
+            <figure className='flex justify-center flex-col items-center'>
               <img
                 decoding="async"
                 loading="lazy"
