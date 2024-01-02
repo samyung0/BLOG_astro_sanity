@@ -9,7 +9,7 @@ export type Post = {
   slug: string;
   tags: string[];
   relatedPosts: string[] | null;
-  readTime: number | null;
+  readingTime: number | null;
   thumbnail: {
     alt: string;
     asset: SanityAsset
