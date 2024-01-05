@@ -32,21 +32,23 @@ export default ({post}: {post: Post}) => (
         image: (props) => {
           return (
             <figure className="flex justify-center flex-col items-center">
-              <img
-                style={{
-                  backgroundImage: `url(${props.value.asset.metadata.lqip})`,
-                  backgroundSize: "50%",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center"
-                }}
-                decoding="async"
-                loading="lazy"
-                className="max-h-[400px] object-contain"
-                src={props.value.asset.url}
-                alt=""
-                width={props.value.asset.metadata.dimensions.width}
-                height={props.value.asset.metadata.dimensions.height}
-              />
+              <a target="_blank" href={props.value.asset.url}>
+                <img
+                  style={{
+                    backgroundImage: `url(${props.value.asset.metadata.lqip})`,
+                    backgroundSize: '50%',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                  }}
+                  decoding="async"
+                  loading="lazy"
+                  className="max-h-[400px] object-contain"
+                  src={props.value.asset.url}
+                  alt=""
+                  width={props.value.asset.metadata.dimensions.width}
+                  height={props.value.asset.metadata.dimensions.height}
+                />
+              </a>
               {props.value.caption && <figcaption>{props.value.caption}</figcaption>}
             </figure>
           )
@@ -74,7 +76,7 @@ export default ({post}: {post: Post}) => (
           })
           return props.value.filename ? (
             <>
-              <div className="bg-code-editor text-background-gray inline-block px-5 py-1 text">
+              <div className="bg-code-editor text-background-gray inline-block px-5 py-1 text-sm">
                 {props.value.filename}
               </div>
               <div className="wrapper" dangerouslySetInnerHTML={{__html: html}}></div>
