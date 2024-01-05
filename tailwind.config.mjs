@@ -68,6 +68,7 @@ export default {
       addVariant('oversizedWrapper', '& .oversizedWrapper')
       addVariant('hiddenpre', '& .hiddenPre'),
       addVariant('inlineCode', '& .inlineCode')
+      addVariant('figureImage', '& figure img')
     },
   ],
 }
