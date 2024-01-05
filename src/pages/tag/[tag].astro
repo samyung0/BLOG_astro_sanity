@@ -1,26 +1,30 @@
 ---
-import type { GetStaticPaths } from "astro";
-import Layout from "../../layouts/Layout.astro";
-import PostPreview from "../../components/PostPreview.astro";
-import Tags from "../../components/Tags.astro";
-import { tags } from "../../../util/sanity";
+import type {GetStaticPaths} from 'astro'
+import Layout from '../../layouts/Layout.astro'
+import PostPreview from '../../components/PostPreview.astro'
+import Tags from '../../components/Tags.astro'
+import {tags} from '../../../util/sanity'
 export const getStaticPaths = (async () => {
   return tags.map((tag) => {
     return {
       params: {
         tag: tag.slug,
       },
-    };
-  });
-}) satisfies GetStaticPaths;
-const { tag } = Astro.params;
-const tagName = tags.find((tag2) => tag2.slug === tag)!;
+    }
+  })
+}) satisfies GetStaticPaths
+const {tag} = Astro.params
+const tagName = tags.find((tag2) => tag2.slug === tag)!
 ---
 
 <Layout title={tagName.name} description={`List of posts with tag ${tagName.name}.`}>
-  <h1 class="font-mosk text-primary-gray font-bold  2xl:text-[4em] lg:text-[3em] text-[2em] pb-4 tracking-wider">
+  <h1
+    class="font-mosk text-primary-gray font-bold 2xl:text-[4em] lg:text-[3em] text-[2em] pb-4 tracking-wider"
+  >
     Tag: {tagName.name}
   </h1>
-  <PostPreview tag={tag} />
+  <div class="md:pt-[6vw] xl:max-w-[1200px] xl:mx-auto lg:mx-[5vw] md:mx-[6vw] pt-12 md:p-0">
+    <PostPreview tag={tag} />
+  </div>
   <Tags />
 </Layout>
