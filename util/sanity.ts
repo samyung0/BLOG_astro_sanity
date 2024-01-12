@@ -31,7 +31,8 @@ export const posts = (await fetch(
     "tags": tags[]->slug.current,
     "author": author->slug.current,
     "relatedPosts": relatedPosts[]->slug.current,
-    readingTime
+    readingTime,
+    description
   }`
 ).then((data) => data.json())).result as Post[]
 

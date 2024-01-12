@@ -32,7 +32,7 @@ export default ({post}: {post: Post}) => (
         image: (props) => {
           return (
             <figure className="flex justify-center flex-col items-center">
-              <a target="_blank" href={props.value.asset.url}>
+              <a aria-label="Open Image" target="_blank" href={props.value.asset.url}>
                 <img
                   style={{
                     backgroundImage: `url(${props.value.asset.metadata.lqip})`,
