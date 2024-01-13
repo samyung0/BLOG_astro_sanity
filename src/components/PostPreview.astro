@@ -20,7 +20,7 @@ const { tag, relatedPosts }: Props = Astro.props;
             <li>
               <div class="text-center">
                 {post.thumbnail.asset.url && (
-                  <a class="inline-block" href={`/post/${post.slug}`}>
+                  <a arai-label={`Go to post ${post.name}`} class="inline-block" href={`/post/${post.slug}`}>
                     <Image
                       class="h-[200px] w-full object-contain object-bottom"
                       src={sanityImage(post.thumbnail.asset.url)}
@@ -37,15 +37,14 @@ const { tag, relatedPosts }: Props = Astro.props;
                     {new Date(post._createdAt).toDateString().slice(4)}
                   </span>
                 </div>
-                <h3>
+                <h2>
                   <a
-                  
                     class="pt-2 block font-bold tracking-wide md:text-lg text-base text-primary-gray"
                     href={`/post/${post.slug}`}
                   >
                     {post.name}
                   </a>
-                </h3>
+                </h2>
                 <div class="pt-1 flex items-center space-x-2">
                   <span class="text-primary-gray md:text-sm sm:text-xs text-[10px]">
                     {post.readingTime && Number(post.readingTime) > 0 ? post.readingTime : "1"} min read
