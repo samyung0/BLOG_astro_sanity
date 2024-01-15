@@ -9,13 +9,6 @@ const highlighter = await shiki.getHighlighter({
   theme: 'github-dark',
 })
 
-// import { bundledLanguages, bundledThemes, getHighlighter } from 'shikiji'
-
-// const highlighter = await getHighlighter({
-//   themes: Object.keys(bundledThemes),
-//   langs: Object.keys(bundledLanguages),
-// })
-
 export default ({post}: {post: Post}) => (
   <PortableText
     value={post.content}
@@ -79,10 +72,35 @@ export default ({post}: {post: Post}) => (
               <div className="bg-code-editor text-background-gray inline-block px-5 py-1 text-sm">
                 {props.value.filename}
               </div>
-              <div className="wrapper" dangerouslySetInnerHTML={{__html: html}}></div>
+              <div data-code={props.value.code} className="wrapper relative">
+                <div dangerouslySetInnerHTML={{__html: html}}></div>
+                <button
+                  className="copyCode absolute md:top-4 md:right-4 top-2 right-2"
+                >
+                  <img
+                    src="/copy-outline.svg"
+                    alt="Copy"
+                    className="block lg:h-[30px] lg:w-[30px] h-[20px] w-[20px] object-contain invert m-0"
+                  />
+                </button>
+              </div>
             </>
           ) : (
-            <div className="wrapper" dangerouslySetInnerHTML={{__html: html}}></div>
+            <div data-code={props.value.code} className="wrapper relative">
+              <div dangerouslySetInnerHTML={{__html: html}}></div>
+              <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(props.value.code)
+                  }}
+                  className="copyCode absolute md:top-4 md:right-4 top-2 right-2"
+                >
+                  <img
+                    src="/copy-outline.svg"
+                    alt="Copy"
+                    className="block lg:h-[30px] lg:w-[30px] h-[20px] w-[20px] object-contain invert m-0"
+                  />
+                </button>
+            </div>
           )
         },
         embed: (props) => {

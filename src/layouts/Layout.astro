@@ -118,36 +118,6 @@ const {title, noPaddingTop, description = ''} = Astro.props
         color: rgba(115, 138, 148, 0.4);
       }
 
-      @keyframes float {
-        0% {
-          transform: translatey(0px);
-        }
-        50% {
-          transform: translatey(8px);
-        }
-        100% {
-          transform: translatey(0px);
-        }
-      }
-
-      @keyframes floatCollapse {
-        0% {
-          transform: translatey(2px) rotateZ(180deg);
-        }
-        50% {
-          transform: translatey(8px) rotateZ(180deg);
-        }
-        100% {
-          transform: translatey(2px) rotateZ(180deg);
-        }
-      }
-      .oversizedWrapper::before {
-        animation: float 6s ease-in-out infinite;
-      }
-      .oversizedCollapse::before {
-        animation: floatCollapse 6s ease-in-out infinite;
-      }
-
       /* scrollbar */
       /* Firefox */
       * {

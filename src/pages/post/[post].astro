@@ -29,12 +29,16 @@ const post = posts.find((post) => post.slug === Astro.params.post)!
     {post.name}
   </h1>
   <div
-  class="md:pt-[6vw] xl:max-w-[1200px] xl:mx-auto lg:mx-[5vw] md:mx-[6vw] pt-12 md:p-0 md:tracking-wide"
+    class="md:pt-[6vw] xl:max-w-[1200px] xl:mx-auto lg:mx-[5vw] md:mx-[6vw] pt-12 md:p-0 md:tracking-wide"
   >
-  <Prose>
-      <p class="md:text-right leading-7 tracking-wide text-primary-gray ">{new Date(post._createdAt).toDateString().slice(4)}</p>
+    <Prose>
+      <p class="md:text-right leading-7 tracking-wide text-primary-gray">
+        {new Date(post._createdAt).toDateString().slice(4)}
+      </p>
       <ReactPortableText post={post} />
-      <p class="text-primary-gray/[0.5] text-xs tracking-wide italic sm:pt-2">Last updated: {new Date(post._updatedAt).toDateString().slice(4)}</p>
+      <p class="text-primary-gray/[0.5] text-xs tracking-wide italic sm:pt-2">
+        Last updated: {new Date(post._updatedAt).toDateString().slice(4)}
+      </p>
     </Prose>
   </div>
   <Tags />
@@ -62,4 +66,12 @@ const post = posts.find((post) => post.slug === Astro.params.post)!
       }
     }
   }
+  const copyFn = function (e) {
+    e.stopPropagation();
+    
+    navigator.clipboard.writeText(this.parentElement.dataset.code)
+  }
+  Array.from(document.getElementsByClassName('copyCode')).forEach((button) =>
+    button.addEventListener('click', copyFn, {passive: true}),
+  )
 </script>
