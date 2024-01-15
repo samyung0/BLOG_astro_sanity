@@ -40,6 +40,9 @@ const post: SchemaTypeDefinition = {
       of: [
         {
           type: 'block',
+          of: [
+            {type: 'image', name: 'inlineImage'},
+          ],
           styles: [
             {title: 'Normal', value: 'normal'},
             {title: 'H1', value: 'h1'},

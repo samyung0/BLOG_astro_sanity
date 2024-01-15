@@ -2,9 +2,10 @@ import type {Author, Post, Tag} from '../types/sanity'
 // import groq from 'groq'
 import {SANITY_PROD_URL} from '../const'
 
-export const posts = (await fetch(
-  SANITY_PROD_URL +
-    `*[_type == "post"] | order(publishedAt desc) {
+export const posts = (
+  await fetch(
+    SANITY_PROD_URL +
+      `*[_type == "post"] | order(_createdAt desc) {
     _id,
     _createdAt,
     _updatedAt,
@@ -20,6 +21,13 @@ export const posts = (await fetch(
         ...,
         asset->
       },
+      children[]{
+        ...,
+        _type == "inlineImage" => {
+          ...,
+          asset->
+        }
+      },
       markDefs[]{
         ...,
         _type == "internalLink" => {
@@ -34,11 +42,13 @@ export const posts = (await fetch(
     readingTime,
     description
   }`
-).then((data) => data.json())).result as Post[]
+  ).then((data) => data.json())
+).result as Post[]
 
-export const authors = (await fetch(
-  SANITY_PROD_URL +
-    `
+export const authors = (
+  await fetch(
+    SANITY_PROD_URL +
+      `
       *[_type == "author"] {
         _id,
         name,
@@ -50,15 +60,18 @@ export const authors = (await fetch(
         }
       }
     `
-).then((data) => data.json())).result as Author[]
+  ).then((data) => data.json())
+).result as Author[]
 
-export const tags = (await fetch(
-  SANITY_PROD_URL +
-    `
+export const tags = (
+  await fetch(
+    SANITY_PROD_URL +
+      `
       *[_type == "tag"] {
         _id,
         name,
         "slug": slug.current
       }
     `
-).then((data) => data.json())).result as Tag[]
+  ).then((data) => data.json())
+).result as Tag[]

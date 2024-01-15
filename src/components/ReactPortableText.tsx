@@ -22,6 +22,27 @@ export default ({post}: {post: Post}) => (
         return (defaultComponents.block as any)[HeadingTag](props)
       },
       types: {
+        inlineImage: (props) => {
+          return (
+            <a aria-label="Open Image" target="_blank" href={props.value.asset.url}>
+              <img
+                style={{
+                  backgroundImage: `url(${props.value.asset.metadata.lqip})`,
+                  backgroundSize: '50%',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                }}
+                decoding="async"
+                loading="lazy"
+                className="max-h-[200px] max-w-[200px] object-contain float-left m-4 block"
+                src={props.value.asset.url}
+                alt=""
+                width={props.value.asset.metadata.dimensions.width}
+                height={props.value.asset.metadata.dimensions.height}
+              />
+            </a>
+          )
+        },
         image: (props) => {
           return (
             <figure className="flex justify-center flex-col items-center">
@@ -74,9 +95,7 @@ export default ({post}: {post: Post}) => (
               </div>
               <div data-code={props.value.code} className="wrapper relative">
                 <div dangerouslySetInnerHTML={{__html: html}}></div>
-                <button
-                  className="copyCode absolute md:top-4 md:right-4 top-2 right-2"
-                >
+                <button className="copyCode absolute md:top-4 md:right-4 top-2 right-2">
                   <img
                     src="/copy-outline.svg"
                     alt="Copy"
@@ -89,17 +108,17 @@ export default ({post}: {post: Post}) => (
             <div data-code={props.value.code} className="wrapper relative">
               <div dangerouslySetInnerHTML={{__html: html}}></div>
               <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(props.value.code)
-                  }}
-                  className="copyCode absolute md:top-4 md:right-4 top-2 right-2"
-                >
-                  <img
-                    src="/copy-outline.svg"
-                    alt="Copy"
-                    className="block lg:h-[30px] lg:w-[30px] h-[20px] w-[20px] object-contain invert m-0"
-                  />
-                </button>
+                onClick={() => {
+                  navigator.clipboard.writeText(props.value.code)
+                }}
+                className="copyCode absolute md:top-4 md:right-4 top-2 right-2"
+              >
+                <img
+                  src="/copy-outline.svg"
+                  alt="Copy"
+                  className="block lg:h-[30px] lg:w-[30px] h-[20px] w-[20px] object-contain invert m-0"
+                />
+              </button>
             </div>
           )
         },
