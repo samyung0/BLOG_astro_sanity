@@ -108,7 +108,7 @@ export default ({post}: {post: Post}) => (
                   <img
                     src="/copy-outline.svg"
                     alt="Copy"
-                    className="block lg:h-[30px] lg:w-[30px] h-[20px] w-[20px] object-contain invert m-0"
+                    className="block h-[20px] w-[20px] object-contain invert m-0"
                   />
                 </button>
               </div>
@@ -125,7 +125,7 @@ export default ({post}: {post: Post}) => (
                 <img
                   src="/copy-outline.svg"
                   alt="Copy"
-                  className="block lg:h-[30px] lg:w-[30px] h-[20px] w-[20px] object-contain invert m-0"
+                  className="block h-[20px] w-[20px] object-contain invert m-0"
                 />
               </button>
             </div>
