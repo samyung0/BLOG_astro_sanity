@@ -13,6 +13,15 @@ export default ({post}: {post: Post}) => (
   <PortableText
     value={post.content}
     components={{
+      list: {
+        indent: (props) => {
+          return (
+            <ul className="list-none">
+              {props.children}
+            </ul>
+          )
+        }
+      },
       block: (props) => {
         const HeadingTag = props.value.style! as any
 
@@ -145,18 +154,6 @@ export default ({post}: {post: Post}) => (
         },
       },
       marks: {
-        indent: (props) => {
-          return (
-            <span
-              style={{
-                paddingInlineStart: props.value.indentLevel * 32 + 'px',
-                display: 'block',
-              }}
-            >
-              {props.children}
-            </span>
-          )
-        },
         indent2: (props) => {
           return (
             <span
@@ -169,7 +166,7 @@ export default ({post}: {post: Post}) => (
           )
         },
         highlight: (props) => {
-          return <span style={{backgroundColor: 'tomato'}}>{props.children}</span>
+          return <span style={{backgroundColor: 'tomato', color: "whitesmoke"}}>{props.children}</span>
         },
         code: (props) => {
           return <code className="inlineCode">{props.children}</code>

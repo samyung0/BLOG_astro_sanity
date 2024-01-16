@@ -40,9 +40,12 @@ const post: SchemaTypeDefinition = {
       of: [
         {
           type: 'block',
-          of: [
-            {type: 'image', name: 'inlineImage'},
+          lists: [
+            {title: 'Indent', value: 'indent'},
+            {title: 'Bullet', value: 'bullet'},
+            {title: 'Number', value: 'number'},
           ],
+          of: [{type: 'image', name: 'inlineImage', validation: (Rule) => Rule.required()}],
           styles: [
             {title: 'Normal', value: 'normal'},
             {title: 'H1', value: 'h1'},
@@ -58,7 +61,7 @@ const post: SchemaTypeDefinition = {
                 value: 'highlight',
                 icon: () => 'H',
                 component: (props) => (
-                  <span style={{backgroundColor: 'tomato'}}>{props.children}</span>
+                  <span style={{backgroundColor: 'tomato', color: "whitesmoke"}}>{props.children}</span>
                 ),
               },
               {title: 'Strong', value: 'strong'},
@@ -68,43 +71,6 @@ const post: SchemaTypeDefinition = {
               {title: 'Strike', value: 'strike-through'},
             ],
             annotations: [
-              {
-                name: 'indent',
-                type: 'object',
-                title: 'Indent Whole',
-                icon: () => 'I',
-                fields: [
-                  {
-                    title: 'Indent Level',
-                    name: 'indentLevel',
-                    type: 'number',
-                    initialValue: 1,
-                    options: {
-                      list: [
-                        {title: '1', value: 1},
-                        {title: '2', value: 2},
-                        {title: '3', value: 3},
-                        {title: '4', value: 4},
-                      ],
-                    },
-                    validation: (Rule) => Rule.required(),
-                  },
-                ],
-                components: {
-                  annotation: (props: any) => {
-                    return (
-                      <span
-                        style={{
-                          paddingInlineStart: props.value.indentLevel * 32 + 'px',
-                          display: 'block',
-                        }}
-                      >
-                        {props.renderDefault(props)}
-                      </span>
-                    )
-                  },
-                },
-              },
               {
                 name: 'indent2',
                 type: 'object',
