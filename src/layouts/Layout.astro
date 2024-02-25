@@ -45,6 +45,11 @@ const {title, noPaddingTop, description = ''} = Astro.props
     }
     <Footer />
     <style is:global>
+      * {
+        font-weight: 500;
+      }
+    </style>
+    <style is:global>
       @font-face {
         font-family: 'mosk';
         src: url('/font/mosk/Mosk Normal.ttf') format('truetype');
