@@ -48,6 +48,11 @@ const {title, noPaddingTop, description = ''} = Astro.props
       * {
         font-weight: 500;
       }
+      @media (min-width: 768px) {
+        * {
+          font-weight: 400
+        }
+      }
     </style>
     <style is:global>
       @font-face {
