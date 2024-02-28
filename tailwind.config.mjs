@@ -69,6 +69,7 @@ export default {
       addVariant('hiddenpre', '& .hiddenPre'),
       addVariant('inlineCode', '& .inlineCode')
       addVariant('figureImage', '& figure img')
+      addVariant('copyCode', '& .copyCode')
     },
   ],
 }
